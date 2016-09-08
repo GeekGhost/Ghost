@@ -62,7 +62,7 @@ public class Fragment2 extends BaseFragment implements SwipeRefreshLayout.OnRefr
 
     @Override
     protected void initView(LayoutInflater inflater) {
-        titleName.setText("发现");
+        titleName.setText(mResources.getText(R.string.discover));
         recyclerView.setAdapterWithProgress(adapter = new FoundAdapter(getContext()));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         SpaceDecoration itemDecoration = new SpaceDecoration(ScreenUtil.dip2px(getContext(), 8));

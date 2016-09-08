@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,6 +32,7 @@ public class BaseFragment extends Fragment {
     protected boolean isConnection = false; // 判断网络状态是否连接 默认为false;
     protected Subscription subscription;
     protected static long lastClickTime;
+    public Resources mResources;
 
     @Override
     public void onAttach(Context mContext) {
@@ -39,6 +41,9 @@ public class BaseFragment extends Fragment {
             this.mContext = mContext;
         } else {
             this.mContext = getActivity();
+        }
+        if (mContext != null) {
+            mResources = mContext.getResources();
         }
     }
 

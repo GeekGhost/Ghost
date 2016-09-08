@@ -2,4 +2,6 @@
     <string name="app_name">小幽</string>
     <string name="loading_failed">数据加载失败</string>
     <string name="title_activity_video_info">VideoInfoActivity</string>
+    <string name="omnibus">精选</string>
+    <string name="discover">发现</string>
 </resources>

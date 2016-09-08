@@ -78,7 +78,7 @@ public class Fragment1 extends BaseFragment implements SwipeRefreshLayout.OnRefr
     @Override
     protected void initView(LayoutInflater inflater) {
         title.setVisibility(View.GONE);
-        titleName.setText("精选");
+        titleName.setText(mResources.getText(R.string.omnibus));
         headerView = inflater.inflate(R.layout.choice_header, null);
         banner = ButterKnife.findById(headerView, R.id.banner);
         banner.setPlayDelay(2000);
