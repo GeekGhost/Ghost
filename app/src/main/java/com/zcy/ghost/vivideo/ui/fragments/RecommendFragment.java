@@ -166,7 +166,7 @@ public class RecommendFragment extends BaseMvpFragment<RecommendPresenter> imple
     public void showContent(final VideoRes videoRes) {
         if (videoRes != null) {
             adapter.clear();
-            List<VideoInfo> videoInfos;
+            final List<VideoInfo> videoInfos;
             for (int i = 1; i < videoRes.list.size(); i++) {
                 if (videoRes.list.get(i).title.equals("精彩推荐")) {
                     videoInfos = videoRes.list.get(i).childList;
@@ -186,7 +186,9 @@ public class RecommendFragment extends BaseMvpFragment<RecommendPresenter> imple
                     public View onCreateView(ViewGroup parent) {
                         banner.setHintView(new IconHintView(getContext(), R.mipmap.ic_page_indicator_focused, R.mipmap.ic_page_indicator, ScreenUtil.dip2px(getContext(), 10)));
                         banner.setHintPadding(0, 0, 0, ScreenUtil.dip2px(getContext(), 8));
-                        banner.setAdapter(new BannerAdapter(getContext(), videoRes.list.get(0).childList));
+                        if (videoRes.list != null && videoRes.list.size() > 0) {
+                            banner.setAdapter(new BannerAdapter(getContext(), videoRes.list.get(0).childList));
+                        }
                         return headerView;
                     }
 
