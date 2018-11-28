@@ -22,6 +22,10 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
     }
     //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
     lintOptions {
@@ -142,5 +146,5 @@ dependencies {
     debugCompile rootProject.ext.dependencies["leakcanary-android"]
     releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
 
-
+    compile 'com.android.support:multidex:1.0.1'
 }

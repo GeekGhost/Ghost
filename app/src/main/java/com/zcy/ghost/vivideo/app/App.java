@@ -3,6 +3,8 @@ package com.zcy.ghost.vivideo.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.zcy.ghost.vivideo.di.component.AppComponent;
@@ -26,7 +28,7 @@ import io.realm.rx.RealmObservableFactory;
  * @author: caopeng
  * @time: 2016/9/13 10:53
  ******************************************/
-public class App extends Application {
+public class App extends android.support.multidex.MultiDexApplication {
     private static App instance;
     private Set<Activity> allActivities;
 
@@ -51,7 +53,7 @@ public class App extends Application {
         //初始化过度绘制检测
 //        BlockCanary.install(this, new AppBlockCanaryContext()).start();
 //        初始化realm
-        initRealm();
+//        initRealm();
         Realm.init(getApplicationContext());
     }
 
@@ -103,4 +105,11 @@ public class App extends Application {
         }
         return appComponent;
     }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        MultiDex.install(this);
+    }
+
 }

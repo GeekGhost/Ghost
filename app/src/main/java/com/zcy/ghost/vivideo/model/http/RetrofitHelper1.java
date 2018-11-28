@@ -6,6 +6,7 @@ import com.zcy.ghost.vivideo.model.bean.VideoRes;
 import com.zcy.ghost.vivideo.model.http.api.GankApis;
 import com.zcy.ghost.vivideo.model.http.api.VideoApis;
 import com.zcy.ghost.vivideo.model.http.response.VideoHttpResponse;
+import com.zcy.ghost.vivideo.presenter.WelfarePresenter;
 
 import java.util.List;
 
@@ -56,6 +57,6 @@ public class RetrofitHelper1 implements HttpHelper {
 
     @Override
     public Observable<GankHttpResponse<List<GankItemBean>>> fetchGirlList(int num, int page) {
-        return mGankApis.getGirlList(num, page);
+        return mGankApis.getGirlList(WelfarePresenter.PATH,num, page);
     }
 }

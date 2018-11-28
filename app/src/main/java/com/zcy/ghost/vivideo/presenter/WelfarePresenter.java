@@ -11,6 +11,7 @@ import com.zcy.ghost.vivideo.presenter.contract.WelfareContract;
 import com.zcy.ghost.vivideo.utils.RxUtil;
 import com.zcy.ghost.vivideo.utils.StringUtils;
 
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,6 +26,7 @@ import rx.functions.Action1;
  */
 
 public class WelfarePresenter extends RxPresenter<WelfareContract.View> implements WelfareContract.Presenter {
+    public static final String PATH = "福利";
     public static final int NUM_OF_PAGE = 20;
 
     private int currentPage = 1;
@@ -36,7 +38,7 @@ public class WelfarePresenter extends RxPresenter<WelfareContract.View> implemen
     @Override
     public void onRefresh() {
         currentPage = 1;
-        Subscription rxSubscription = RetrofitHelper.getGankApis().getGirlList(NUM_OF_PAGE, currentPage)
+        Subscription rxSubscription = RetrofitHelper.getGankApis().getGirlList(PATH,NUM_OF_PAGE, currentPage)
                 .compose(RxUtil.<GankHttpResponse<List<GankItemBean>>>rxSchedulerHelper())
                 .compose(RxUtil.<List<GankItemBean>>handleGankResult())
                 .subscribe(new Action1<List<GankItemBean>>() {
@@ -56,7 +58,7 @@ public class WelfarePresenter extends RxPresenter<WelfareContract.View> implemen
 
     @Override
     public void loadMore() {
-        Subscription rxSubscription = RetrofitHelper.getGankApis().getGirlList(NUM_OF_PAGE, ++currentPage)
+        Subscription rxSubscription = RetrofitHelper.getGankApis().getGirlList(PATH,NUM_OF_PAGE, ++currentPage)
                 .compose(RxUtil.<GankHttpResponse<List<GankItemBean>>>rxSchedulerHelper())
                 .compose(RxUtil.<List<GankItemBean>>handleGankResult())
                 .subscribe(new Action1<List<GankItemBean>>() {

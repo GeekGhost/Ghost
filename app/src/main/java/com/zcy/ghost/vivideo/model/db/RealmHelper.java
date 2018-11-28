@@ -106,7 +106,7 @@ public class RealmHelper implements DBHelper {
      */
     public List<Collection> getCollectionList() {
         //使用findAllSort ,先findAll再result.sort排序
-        RealmResults<Collection> results = getRealm().where(Collection.class).findAllSorted("time", Sort.DESCENDING);
+        RealmResults<Collection> results = getRealm().where(Collection.class).findAll().sort("time", Sort.DESCENDING);
         return getRealm().copyFromRealm(results);
     }
 
@@ -121,7 +121,7 @@ public class RealmHelper implements DBHelper {
      */
     public void insertRecord(Record bean, int maxSize) {
         if (maxSize != 0) {
-            RealmResults<Record> results = getRealm().where(Record.class).findAllSorted("time", Sort.DESCENDING);
+            RealmResults<Record> results = getRealm().where(Record.class).findAll().sort("time", Sort.DESCENDING);
             if (results.size() >= maxSize) {
                 for (int i = maxSize - 1; i < results.size(); i++) {
                     deleteRecord(results.get(i).getId());
@@ -164,7 +164,7 @@ public class RealmHelper implements DBHelper {
 
     public List<Record> getRecordList() {
         //使用findAllSort ,先findAll再result.sort排序
-        RealmResults<Record> results = getRealm().where(Record.class).findAllSorted("time", Sort.DESCENDING);
+        RealmResults<Record> results = getRealm().where(Record.class).findAll().sort("time", Sort.DESCENDING);
         return getRealm().copyFromRealm(results);
     }
 
@@ -204,7 +204,7 @@ public class RealmHelper implements DBHelper {
      */
     public List<SearchKey> getSearchHistoryList(String value) {
         //使用findAllSort ,先findAll再result.sort排序
-        RealmResults<SearchKey> results = getRealm().where(SearchKey.class).contains("searchKey", value).findAllSorted("insertTime", Sort.DESCENDING);
+        RealmResults<SearchKey> results = getRealm().where(SearchKey.class).contains("searchKey", value).findAll().sort("insertTime", Sort.DESCENDING);
         return getRealm().copyFromRealm(results);
     }
 
@@ -233,7 +233,7 @@ public class RealmHelper implements DBHelper {
      */
     public List<SearchKey> getSearchHistoryListAll() {
         //使用findAllSort ,先findAll再result.sort排序
-        RealmResults<SearchKey> results = getRealm().where(SearchKey.class).findAllSorted("insertTime", Sort.DESCENDING);
+        RealmResults<SearchKey> results = getRealm().where(SearchKey.class).findAll().sort("insertTime", Sort.DESCENDING);
         return getRealm().copyFromRealm(results);
     }
 }
